@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: radar-dos-slots
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app/main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: CHANNEL_ID
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: DASHBOARD_SECRET
+        generateValue: true
+      - key: DASHBOARD_PUBLIC_URL
+        sync: false
+      - key: OPERATORS_API_URL
+        sync: false
+      - key: OPERATORS_API_TOKEN
+        sync: false
+      - key: DB_PATH
+        value: /var/data/radar_slots.sqlite3
+    disk:
+      name: radar-data
+      mountPath: /var/data
+      sizeGB: 1
